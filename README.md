@@ -20,6 +20,23 @@
 
 ## English
 
+## 📊 Architecture Diagram
+
+```mermaid
+graph LR
+    A[Source Systems] --> B[Staging Layer]
+    B --> C[Data Warehouse]
+    C --> D[Fact Tables]
+    C --> E[Dimension Tables]
+    D --> F[BI Tools]
+    E --> F
+    
+    style A fill:#e1f5ff
+    style F fill:#c8e6c9
+    style C fill:#fff9c4
+```
+
+
 ## 🎯 Features
 
 - Star Schema Design
