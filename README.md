@@ -8,7 +8,6 @@
 ![BigQuery](https://img.shields.io/badge/BigQuery-blue)
 ![Redshift](https://img.shields.io/badge/Redshift-blue)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-active-success.svg)
 
 **Enterprise data warehouse with star schema, SCD implementation, and dbt transformations for BI reporting**
 
