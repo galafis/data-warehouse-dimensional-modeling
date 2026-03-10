@@ -1,278 +1,117 @@
-# 📊 Data Warehouse Dimensional Modeling
+# Data Warehouse Dimensional Modeling
 
-> Professional Python project implementing Data Warehouse Dimensional Modeling
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB.svg)](https://www.python.org/)
+[![SQLite](https://img.shields.io/badge/SQLite-3-003B57.svg)](https://sqlite.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
-[![NumPy](https://img.shields.io/badge/NumPy-1.26-013243.svg)](https://img.shields.io/badge/)
-[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://img.shields.io/badge/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+Toolkit de modelagem dimensional para Data Warehouses. Gerador de star/snowflake schema, tabelas de dimensao com SCD Types 1, 2 e 3, tabelas fato, gerenciamento de chaves substitutas e padroes ETL.
 
-[English](#english) | [Português](#português)
-
----
-
-## English
-
-### 🎯 Overview
-
-**Data Warehouse Dimensional Modeling** is a production-grade Python application that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
-
-The codebase comprises **111 lines** of source code organized across **2 modules**, following industry best practices for maintainability, scalability, and code quality.
-
-### ✨ Key Features
-
-- **🔄 Data Pipeline**: Scalable ETL with parallel processing
-- **✅ Data Validation**: Schema validation and quality checks
-- **📊 Monitoring**: Pipeline health metrics and alerting
-- **🔧 Configurability**: YAML/JSON-based pipeline configuration
-- **🏗️ Object-Oriented**: 4 core classes with clean architecture
-
-### 🏗️ Architecture
-
-```mermaid
-graph TB
-    subgraph Core["🏗️ Core"]
-        A[Main Module]
-        B[Business Logic]
-        C[Data Processing]
-    end
-    
-    subgraph Support["🔧 Support"]
-        D[Configuration]
-        E[Utilities]
-        F[Tests]
-    end
-    
-    A --> B --> C
-    D --> A
-    E --> B
-    F -.-> B
-    
-    style Core fill:#e1f5fe
-    style Support fill:#f3e5f5
-```
-
-### 🚀 Quick Start
-
-#### Prerequisites
-
-- Python 3.12+
-- pip (Python package manager)
-
-#### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/galafis/data-warehouse-dimensional-modeling.git
-cd data-warehouse-dimensional-modeling
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-#### Running
-
-```bash
-# Run the application
-python src/main.py
-```
-
-### 🧪 Testing
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Project Structure
-
-```
-data-warehouse-dimensional-modeling/
-├── assets/
-├── dbt/
-├── docs/          # Documentation
-├── notebooks/
-├── seeds/
-├── sql/
-│   ├── marts/
-│   ├── models/        # Data models
-│   └── staging/
-├── tests/         # Test suite
-│   └── test_models.py
-├── LICENSE
-├── README.md
-├── requirements.txt
-└── setup.py
-```
-
-### 🛠️ Tech Stack
-
-| Technology | Description | Role |
-|------------|-------------|------|
-| **Python** | Core Language | Primary |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-
-### 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-### 👤 Author
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+Dimensional modeling toolkit for Data Warehouses. Star/snowflake schema generator, dimension tables with SCD Types 1, 2 and 3, fact tables, surrogate key management, and ETL patterns.
 
 ---
 
-## Português
-
-### 🎯 Visão Geral
-
-**Data Warehouse Dimensional Modeling** é uma aplicação Python de nível profissional que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
-
-A base de código compreende **111 linhas** de código-fonte organizadas em **2 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
-
-### ✨ Funcionalidades Principais
-
-- **🔄 Data Pipeline**: Scalable ETL with parallel processing
-- **✅ Data Validation**: Schema validation and quality checks
-- **📊 Monitoring**: Pipeline health metrics and alerting
-- **🔧 Configurability**: YAML/JSON-based pipeline configuration
-- **🏗️ Object-Oriented**: 4 core classes with clean architecture
-
-### 🏗️ Arquitetura
+## Arquitetura / Architecture
 
 ```mermaid
 graph TB
-    subgraph Core["🏗️ Core"]
-        A[Main Module]
-        B[Business Logic]
-        C[Data Processing]
+    subgraph SchemaGenerator["Schema Generator"]
+        SG[build_star_schema]
     end
-    
-    subgraph Support["🔧 Support"]
-        D[Configuration]
-        E[Utilities]
-        F[Tests]
+
+    subgraph Dimensions["Tabelas Dimensao"]
+        D1[DimensionTable SCD1]
+        D2[DimensionTable SCD2]
+        D3[DimensionTable SCD3]
     end
-    
-    A --> B --> C
-    D --> A
-    E --> B
-    F -.-> B
-    
-    style Core fill:#e1f5fe
-    style Support fill:#f3e5f5
+
+    subgraph Facts["Tabelas Fato"]
+        F1[FactTable]
+    end
+
+    subgraph Support["Suporte"]
+        SK[SurrogateKeyManager]
+    end
+
+    SG --> D1
+    SG --> D2
+    SG --> D3
+    SG --> F1
+    D1 --> SK
+    D2 --> SK
+    D3 --> SK
+    D1 --> F1
+    D2 --> F1
+    D3 --> F1
 ```
 
-### 🚀 Início Rápido
+## SCD Types / Tipos SCD
 
-#### Prerequisites
+```mermaid
+graph LR
+    subgraph SCD1["SCD Tipo 1 - Sobrescrever"]
+        S1A[Registro Original] -->|Update| S1B[Registro Atualizado]
+    end
 
-- Python 3.12+
-- pip (Python package manager)
+    subgraph SCD2["SCD Tipo 2 - Historico Completo"]
+        S2A[v1 is_current=0] --> S2B[v2 is_current=0]
+        S2B --> S2C[v3 is_current=1]
+    end
 
-#### Installation
+    subgraph SCD3["SCD Tipo 3 - Valor Anterior"]
+        S3A["city=RJ, previous_city=SP"]
+    end
+```
+
+## Funcionalidades / Features
+
+| Funcionalidade / Feature | Descricao / Description |
+|---|---|
+| SCD Type 1 | Sobrescreve valores existentes / Overwrites existing values |
+| SCD Type 2 | Historico completo com valid_from/valid_to / Full history with valid_from/valid_to |
+| SCD Type 3 | Armazena valor anterior em colunas separadas / Stores previous value in separate columns |
+| Surrogate Key Manager | Geracao e mapeamento de chaves substitutas / Surrogate key generation and mapping |
+| Fact Table | Insercao unitaria e em massa, agregacao / Single and bulk insert, aggregation |
+| Schema Generator | Construcao declarativa de star schemas / Declarative star schema construction |
+
+## Inicio Rapido / Quick Start
+
+```python
+from src.dimensional_modeling import SchemaGenerator
+
+gen = SchemaGenerator()
+schema = gen.build_star_schema({
+    "dimensions": [
+        {"name": "dim_product", "columns": {"product_id": "TEXT", "name": "TEXT"},
+         "natural_key": "product_id", "scd_type": 1},
+        {"name": "dim_customer", "columns": {"customer_id": "TEXT", "city": "TEXT"},
+         "natural_key": "customer_id", "scd_type": 2},
+    ],
+    "facts": [
+        {"name": "fact_sales", "measures": {"revenue": "REAL", "qty": "INTEGER"},
+         "dimension_keys": {"product_sk": "dim_product", "customer_sk": "dim_customer"}},
+    ],
+})
+
+# Load dimensions
+gen.dimensions["dim_product"].load({"product_id": "P1", "name": "Widget"})
+gen.dimensions["dim_customer"].load({"customer_id": "C1", "city": "SP"}, "2024-01-01")
+
+# Load facts
+gen.facts["fact_sales"].insert({"product_sk": 1, "customer_sk": 1, "revenue": 150.0, "qty": 3})
+```
+
+## Testes / Tests
 
 ```bash
-# Clone the repository
-git clone https://github.com/galafis/data-warehouse-dimensional-modeling.git
-cd data-warehouse-dimensional-modeling
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+pytest tests/ -v
 ```
 
-#### Running
+## Tecnologias / Technologies
 
-```bash
-# Run the application
-python src/main.py
-```
+- Python 3.9+
+- SQLite3
+- pytest
 
-### 🧪 Testing
+## Licenca / License
 
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Estrutura do Projeto
-
-```
-data-warehouse-dimensional-modeling/
-├── assets/
-├── dbt/
-├── docs/          # Documentation
-├── notebooks/
-├── seeds/
-├── sql/
-│   ├── marts/
-│   ├── models/        # Data models
-│   └── staging/
-├── tests/         # Test suite
-│   └── test_models.py
-├── LICENSE
-├── README.md
-├── requirements.txt
-└── setup.py
-```
-
-### 🛠️ Stack Tecnológica
-
-| Tecnologia | Descrição | Papel |
-|------------|-----------|-------|
-| **Python** | Core Language | Primary |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-
-### 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
-
-### 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-### 👤 Autor
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+MIT License - veja [LICENSE](LICENSE) / see [LICENSE](LICENSE).
