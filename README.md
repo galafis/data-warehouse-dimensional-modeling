@@ -3,6 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.9+-3776AB.svg)](https://www.python.org/)
 [![SQLite](https://img.shields.io/badge/SQLite-3-003B57.svg)](https://sqlite.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker)](Dockerfile)
 
 Toolkit de modelagem dimensional para Data Warehouses. Gerador de star/snowflake schema, tabelas de dimensao com SCD Types 1, 2 e 3, tabelas fato, gerenciamento de chaves substitutas e padroes ETL.
 
